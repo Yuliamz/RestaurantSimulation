@@ -3,18 +3,18 @@ package logic.entity;
 import logic.UniformDistribution;
 
 /**
- *
+ * Platos
  * @author Yuliamz
  */
 public enum Dish {
- PLATO1,PLATO2,PLATO3,PLATO4;
+ BANDEJA_PAISA,CUCHUCO_DE_TRIGO,PAELLA_VALENCIANA,ARROZ_CON_POLLO;
  
     public static Dish getRandomDish() {
         switch (UniformDistribution.RANDOM.nextInt(4)){
-            case 0:return PLATO1;
-            case 1:return PLATO2;
-            case 2:return PLATO3;
-            case 3:return PLATO4;
+            case 0:return BANDEJA_PAISA;
+            case 1:return CUCHUCO_DE_TRIGO;
+            case 2:return PAELLA_VALENCIANA;
+            case 3:return ARROZ_CON_POLLO;
             default:return null;
         }
     }

@@ -26,7 +26,14 @@ public class RestaurantSimulation {
     private final DishStat plato4;
     private final List<SimulatedDiner> simulatedDiners;
     
-
+/**
+ * Constructor
+ * @param maxDiner máxima cantidad de comensales registrados
+ * @param minDiner mínima cantidad de comensales registrados
+ * @param maxWorkDayHours máxima cantidad de horas por jornada de trabajo
+ * @param minWorkDayHours mínima cantidad de horas por jornada de trabajo
+ * @param simulatedHours horas a simular
+ */
     public RestaurantSimulation(int maxDiner, int minDiner, int maxWorkDayHours, int minWorkDayHours, int simulatedHours) {
         this.maxDiner = maxDiner;
         this.minDiner = minDiner;
@@ -38,20 +45,28 @@ public class RestaurantSimulation {
         dinersPerSimulatedHours=UniformDistribution.generateAndMultiply(minDinerPerHour, maxDinerPerHour, 100, simulatedHours);
         dinersPerSimulatedHours.forEach(System.out::println);
         simulatedDiners = new ArrayList<>();
-        plato1 = new DishStat(Dish.PLATO1);
-        plato2 = new DishStat(Dish.PLATO2);
-        plato3 = new DishStat(Dish.PLATO3);
-        plato4 = new DishStat(Dish.PLATO4);
+        plato1 = new DishStat(Dish.BANDEJA_PAISA);
+        plato2 = new DishStat(Dish.CUCHUCO_DE_TRIGO);
+        plato3 = new DishStat(Dish.PAELLA_VALENCIANA);
+        plato4 = new DishStat(Dish.ARROZ_CON_POLLO);
         
     }
-
-    public List<Diner> simulateDiners(int diners){
+    
+    /**
+     * realiza una simulacion de N comensales
+     * @param diners cantidad de comensales a simular
+     * @return lista de comensales
+     */
+    private List<Diner> simulateDiners(int diners){
         List<Diner> dsList = new ArrayList<>();
         for (int i = 0; i < diners; i++) {
             dsList.add(new Diner());
         }
         return dsList;
     }
+    /**
+     * Inicia la simulación
+     */
     public void startSimulation(){
         for (int i = 0; i < dinersPerSimulatedHours.size(); i++) {
             List<Diner> ds = simulateDiners(dinersPerSimulatedHours.get(i).intValue());
@@ -60,8 +75,10 @@ public class RestaurantSimulation {
         }
         calcFinalStats();
     }
-    
-    void calcFinalStats(){
+    /**
+     * Realiza el cálculo de las estadisticas finales de cada plato
+     */
+    private void calcFinalStats(){
         
         for (int i = 0; i < simulatedDiners.size(); i++) {
             plato1.plusDishStat(simulatedDiners.get(i).getPl1());
@@ -89,14 +106,18 @@ public class RestaurantSimulation {
         plato3.setRank(plato3.getTotalRank()/(double)plato3.getRankedSells());
         plato4.setRank(plato4.getTotalRank()/(double)plato4.getRankedSells());
     }
-    
+    /**
+     * muestra las estadisticas de los platos por consola
+     */
     public void printStats(){
         System.out.println(plato1.toString());
         System.out.println(plato2.toString());
         System.out.println(plato3.toString());
         System.out.println(plato4.toString());
     }
-
+    /**
+     * gets y sets
+     */
     public DishStat getPlato1() {
         return plato1;
     }

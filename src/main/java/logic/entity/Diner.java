@@ -3,14 +3,19 @@ package logic.entity;
 import logic.UniformDistribution;
 
 /**
- *
+ *  Comensal
  * @author Yuliamz
  */
 public class Diner {
     private Dish dish;
     private boolean isRated;
     private int rate;
-
+    /**
+     * constructor
+     * genera un plato aleatorio
+     * determina si califica o no el plato
+     * se califica aleatoriamente el plato
+     */
     public Diner() {
         dish=Dish.getRandomDish();
         isRated=UniformDistribution.RANDOM.nextBoolean();

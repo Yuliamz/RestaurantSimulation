@@ -38,6 +38,9 @@ public class FXMLController implements Initializable {
     @FXML
     private TableColumn<DishStat, Double> rankColumn;
     
+    /**
+     * Inicia el proceso de simulación
+     */
     @FXML
     private void startSimulation(){
         data.clear();
@@ -54,6 +57,11 @@ public class FXMLController implements Initializable {
         rs.printStats();
     }
     
+    /**
+     * Inicializa la Interfaz Gráfica
+     * @param url
+     * @param rb 
+     */
         @Override
     public void initialize(URL url, ResourceBundle rb) {
         dinerRangeSlider.setMax(200.0);
@@ -78,9 +86,7 @@ public class FXMLController implements Initializable {
         workDayRangeSlider.highValueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
             maxWorkDayLabel.setText(""+newValue.intValue());
         });
-        
-        
-        
+
         dishColumn.setCellValueFactory(new PropertyValueFactory<>("dish"));
         sellsColumn.setCellValueFactory(new PropertyValueFactory<>("totalSells"));
         rankedColumn.setCellValueFactory(new PropertyValueFactory<>("rankedSells"));

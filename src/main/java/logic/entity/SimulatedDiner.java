@@ -1,30 +1,37 @@
 package logic.entity;
 
 import java.util.List;
-import logic.UniformDistribution;
 
 /**
- *
+ *  Simulacion correspondiente a X horas de trabajo, con X cantidad de comensales
  * @author Yuliamz
  */
 public class SimulatedDiner {
-        DishStat pl1 = new DishStat(Dish.PLATO1);
-        DishStat pl2 = new DishStat(Dish.PLATO2);
-        DishStat pl3 = new DishStat(Dish.PLATO3);
-        DishStat pl4 = new DishStat(Dish.PLATO4);
+        DishStat pl1 = new DishStat(Dish.BANDEJA_PAISA);
+        DishStat pl2 = new DishStat(Dish.CUCHUCO_DE_TRIGO);
+        DishStat pl3 = new DishStat(Dish.PAELLA_VALENCIANA);
+        DishStat pl4 = new DishStat(Dish.ARROZ_CON_POLLO);
+        /**
+         * constructor
+         * @param diners lista de comensales con sus correspondientes platos
+         */
     public SimulatedDiner(List<Diner> diners) {
         for (int i = 0; i < diners.size(); i++) {
             Diner diner = diners.get(i);
             switch(diner.getDish()){
-                case PLATO1:addDinnerToStat(diner, pl1);break;
-                case PLATO2:addDinnerToStat(diner, pl2);break;
-                case PLATO3:addDinnerToStat(diner, pl3);break;
-                case PLATO4:addDinnerToStat(diner, pl4);break;
+                case BANDEJA_PAISA:addDinnerToStat(diner, pl1);break;
+                case CUCHUCO_DE_TRIGO:addDinnerToStat(diner, pl2);break;
+                case PAELLA_VALENCIANA:addDinnerToStat(diner, pl3);break;
+                case ARROZ_CON_POLLO:addDinnerToStat(diner, pl4);break;
                 default:break;
             }
         }
     }
-    
+    /**
+     * agrega un nuevo comensal a las estadisticas
+     * @param d comensal
+     * @param ds estadísticas
+     */
     private void addDinnerToStat(Diner d,DishStat ds){
         ds.addSell();
         if (d.isIsRated()) {
@@ -32,7 +39,9 @@ public class SimulatedDiner {
             ds.addRank(d.getRate());
         }
     }
-
+/**
+ * gets y sets
+ */
     public DishStat getPl1() {
         return pl1;
     }
