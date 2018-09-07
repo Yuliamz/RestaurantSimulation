@@ -46,8 +46,13 @@ public class UniformDistribution {
      * @return lista con los números generados
      */
     public static List<Double> generateAndMultiply(double min,double max,int amount,int simulatedHours){
+        boolean isValid = false;
         List<Double> nums = new ArrayList<>();
-        for (int i = 0; i < amount; i++) nums.add((min+((max-min)*Math.random()))*simulatedHours);
+        while (!isValid) {
+            nums.clear();
+            for (int i = 0; i < amount; i++) nums.add((min+((max-min)*Math.random()))*simulatedHours);
+            isValid=TestUtils.testKS(nums, 95);
+        }
         return nums;
     }
 }
